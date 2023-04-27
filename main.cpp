@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "h-gerente.hpp"
-#include "h-cliente.hpp"
+#include "gerente.cpp"
+#include "cliente.cpp"
 using namespace std;
 
 int main(int argc, char *argv[]) {

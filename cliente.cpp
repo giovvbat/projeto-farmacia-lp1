@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "h-cliente.hpp"
 #include <map>
 using namespace std;
 

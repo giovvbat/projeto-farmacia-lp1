@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "h-gerente.hpp"
 using namespace std;
 
 bool buscarMed(string medDesejado) {
