@@ -47,7 +47,7 @@ double calcularValorCarrinho() {
     return total;
 }
 
-int excluirCarrinho(string remedioExcl) {
+int excluirDoCarrinho(string remedioExcl) {
     for(auto i:carrinho) {
         if(i.first==remedioExcl) {
             carrinho.erase(i.first);

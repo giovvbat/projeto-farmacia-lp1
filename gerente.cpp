@@ -3,17 +3,6 @@
 #include "h-gerente.hpp"
 using namespace std;
 
-bool buscarMed(string medDesejado) {
-    ifstream file("medicamentos.txt");
-    string medicamento;
-    while(getline(file, medicamento)) {
-        if(medicamento==medDesejado) 
-            return true;
-    }
-    file.close();
-    return false;
-}
-
 void adicionarMed(ofstream& arquivo, string nomeMed, double precoMed) {
     arquivo<<nomeMed<<endl;
     arquivo<<precoMed<<endl;
