@@ -120,8 +120,6 @@ int main(int argc, char *argv[]) {
                         novoPreco=stod(novoPr);
                         alterarPreco(medicamento, novoPreco);
                     }
-                    else
-                        cout<<"Medicamento não encontrado no estoque!"<<endl;
                 }
                 else if(option==5) {
                     string medicamento;

@@ -1,10 +1,8 @@
-Ibuprofeno
-10.85
-Dorflex
-13.33
 Buscopan
 15.71
+Dorflex
+2.2
+Ibuprofeno
+10.85
 Rivotril
-79.90
-Amoxilina
-71.85
+79.9

@@ -60,7 +60,7 @@ void listarMedsWithPrices() {
 int alterarPreco(string medicamento, double novoPreco) {
     for(auto i:medicamentos) {
         if(i.first==medicamento) {
-            i.second=novoPreco;
+            medicamentos[medicamento]=novoPreco;
             cout<<"Preço atualizado com sucesso!"<<endl;
             return 1;
         }
@@ -73,6 +73,7 @@ int excluirMed(string medicamento) {
     for(auto i:medicamentos) {
         if(i.first==medicamento) {
             medicamentos.erase(i.first);
+            cout<<"Medicamento excluído com sucesso!"<<endl;
             return 1;
         }
     }
