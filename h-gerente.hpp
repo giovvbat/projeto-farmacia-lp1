@@ -2,7 +2,14 @@
 #define _GERENTE_HPP
 using namespace std;
 
-void adicionarMed(ofstream& arquivo, string nomeMed, double precoMed);
+void inicializarArquivo();
+void adicionarMed(string nomeMed, double precoMed);
 void listarMedsWithPrices();
+void adicionarArquivoNoMapa();
+int alterarPreco(string medicamento, double novoPreco);
+int excluirMed(string medicamento);
+bool buscarMed(string medDesejado);
+double procurarPreco(string medicamento);
+void transferirMedsNoArquivo();
 
 #endif

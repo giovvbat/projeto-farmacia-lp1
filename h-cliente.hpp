@@ -2,9 +2,7 @@
 #define _CLIENTE_HPP
 using namespace std;
 
-bool buscarMed(string medDesejado);
-void listarMeds();
-void adicionarNoCarrinho(string medDesejado);
+void adicionarNoCarrinho(string medDesejado, double preco);
 double calcularValorCarrinho();
 int excluirDoCarrinho(string remedioExcl);
 

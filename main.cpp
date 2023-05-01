@@ -1,14 +1,22 @@
 #include <iostream>
 #include <fstream>
-#include "gerente.cpp"
-#include "cliente.cpp"
+#include <map>
+#include "h-cliente.hpp"
+#include "h-gerente.hpp"
 using namespace std;
 
 int main(int argc, char *argv[]) {
     
+    /*capturando o tipo de usuário para inicializar o programa de maneira correta*/
     string perfil=argv[1];
-    ofstream arquivo("medicamentos.txt");
 
+    /*preenchendo o arquivo com 5 elementos iniciais*/
+    inicializarArquivo();
+
+    /*transferindo os elementos iniciais do arquivo para o mapa*/
+    adicionarArquivoNoMapa();
+
+    /*teste para saber qual perfil de usuário inicializou o programa*/
     if(perfil=="cliente") {
         while(1) {
             cout<<"Escolha uma das opções: "<<endl;
@@ -21,11 +29,13 @@ int main(int argc, char *argv[]) {
             int option;
             cin>>option;
             if(option==1) 
-                listarMeds();
+                listarMedsWithPrices();
             else if(option==2) {
                 string medDesejado;
                 cout<<"Digite o nome do medicamento desejado:"<<endl;
+                cin.ignore();
                 getline(cin, medDesejado);
+                /*teste para verificar a presença do medicamento desejado no map*/
                 if(buscarMed(medDesejado))
                     cout<<"Medicamento encontrado!"<<endl;
                 else
@@ -34,23 +44,31 @@ int main(int argc, char *argv[]) {
             else if(option==3) {
                 string medDesejado;
                 cout<<"Digite o nome do medicamento desejado:"<<endl;
+                cin.ignore();
                 getline(cin, medDesejado);
-                if(buscarMed(medDesejado)) 
-                    adicionarNoCarrinho(medDesejado);
+                if(buscarMed(medDesejado)) {
+                    double precoMed=procurarPreco(medDesejado);
+                    adicionarNoCarrinho(medDesejado, precoMed);
+                    cout<<"Medicamento adicionado no carrinho com sucesso!"<<endl;
+                }
                 else
                     cout<<"Medicamento indisponível!"<<endl;
             }
             else if(option==4) {
-                cout<<"O valor atual do carrinho é: "<<calcularValorCarrinho()<<" reais!"<<endl;
+                if(!(calcularValorCarrinho()==0))
+                    cout<<"O valor atual do carrinho é: "<<calcularValorCarrinho()<<" reais!"<<endl;
             }
-            else if(option==4) {
+            else if(option==5) {
                 cout<<"Digite o remédio a ser excluído do carrinho: "<<endl;
                 string remedioExcl;
+                cin.ignore();
                 getline(cin, remedioExcl);
                 excluirDoCarrinho(remedioExcl);
             }
             else if(option==6)
                 break;
+            else
+                cout<<"Opção inválida!"<<endl;
         }
     }
     else if(perfil=="gerente") {
@@ -71,28 +89,61 @@ int main(int argc, char *argv[]) {
                 if(option==1) 
                     listarMedsWithPrices();
                 else if(option==2) {
-                    string nomeMed;
-                    double precoMed;
+                    string medicamento;
+                    double preco;
                     cout<<"Digite o nome do medicamento:"<<endl;
-                    getline(cin, nomeMed);
+                    cin.ignore();
+                    getline(cin, medicamento);
                     cout<<"Digite o preço do medicamento:"<<endl;
-                    cin>>precoMed;
-                    adicionarMed(arquivo, nomeMed, precoMed);
+                    cin>>preco;
+                    adicionarMed(medicamento, preco);
                 }
                 else if(option==3) {
                     string medDesejado;
                     cout<<"Digite o nome do medicamento desejado:"<<endl;
+                    cin.ignore();
                     getline(cin, medDesejado);
                     if(buscarMed(medDesejado))
                         cout<<"Medicamento encontrado!"<<endl;
                     else
                         cout<<"Medicamento não encontrado!"<<endl;
                 }
-                else if(option==6)
+                else if(option==4) {
+                    string medicamento, novoPr;
+                    double novoPreco;
+                    cout<<"Digite o nome do medicamento cujo preço será modificado: "<<endl;
+                    cin.ignore();
+                    getline(cin, medicamento);
+                    if(buscarMed(medicamento)) {
+                        cout<<"Digite o novo preço do medicamento: "<<endl;
+                        getline(cin, novoPr);
+                        novoPreco=stod(novoPr);
+                        alterarPreco(medicamento, novoPreco);
+                    }
+                    else
+                        cout<<"Medicamento não encontrado no estoque!"<<endl;
+                }
+                else if(option==5) {
+                    string medicamento;
+                    cout<<"Digite o nome do medicamento a ser excluído: "<<endl;
+                    cin.ignore();
+                    getline(cin, medicamento);
+                    excluirMed(medicamento);
+                }
+                else if(option==6) {
+                    /*função para trasnferir as modificações feitas no map para o arquivo*/
+                    transferirMedsNoArquivo();
                     break;
+                }
+                else
+                    cout<<"Opção inválida!"<<endl;
             }
         }
+        else 
+            cout<<"Senha inválida!"<<endl;
     }
+    else
+        cout<<"Perfil inválido!"<<endl;
 
     return 0;
 }
