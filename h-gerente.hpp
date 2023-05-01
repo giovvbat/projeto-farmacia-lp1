@@ -2,6 +2,8 @@
 #define _GERENTE_HPP
 using namespace std;
 
+/*funções utilizadas pelo gerente*/
+
 void inicializarArquivo();
 void adicionarMed(string nomeMed, double precoMed);
 void listarMedsWithPrices();
