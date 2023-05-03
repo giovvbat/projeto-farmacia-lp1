@@ -2,7 +2,7 @@
 #define _CLIENTE_HPP
 using namespace std;
 
-/*funções utilizadas pelo cliente*/
+/*funções que são utilizadas pelo cliente*/
 
 void adicionarNoCarrinho(string medDesejado, double preco);
 double calcularValorCarrinho();

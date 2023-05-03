@@ -7,25 +7,9 @@ using namespace std;
 /*criando o map onde serão armazenado os medicamentos com seus preços*/
 map<string, double>medicamentos;
 
-/*adicionando 5 elementos iniciais no arquivo como padrão*/
-void inicializarArquivo() {
-    ofstream arquivo;
-    arquivo.open("medicamentos.txt", ios::out);
-    arquivo<<"Ibuprofeno"<<endl;
-    arquivo<<"10.85"<<endl;
-    arquivo<<"Dorflex"<<endl;
-    arquivo<<"13.33"<<endl;
-    arquivo<<"Buscopan"<<endl;
-    arquivo<<"15.71"<<endl;
-    arquivo<<"Rivotril"<<endl;
-    arquivo<<"79.90"<<endl;
-    arquivo<<"Amoxilina"<<endl;
-    arquivo<<"71.85"<<endl;
-    arquivo.close();
-}
-
-/*adicionando os elementos adicionados no map*/
+/*lendo o arquivo e adicionando os elementos no map*/
 void adicionarArquivoNoMapa() {
+    /*abre o arquivo para leitura*/
     ifstream file("medicamentos.txt");
     string medicamento, preco;
     double precoD;
@@ -115,8 +99,8 @@ double procurarPreco(string medicamento) {
 
 /*função usada para transferir as alterações feitas no map para o arquivo original*/
 void transferirMedsNoArquivo() {
-    /*de clarando o arquivo e esvaziando ele*/
-    ofstream arquivo;
+    /*declarando o arquivo e esvaziando ele*/
+    fstream arquivo;
     arquivo.open("medicamentos.txt", ios::out);
     /*imprimindo cada elemento do map em duas linhas no arquivo e fechando o arquivo em seguida*/
     for(auto i:medicamentos) {

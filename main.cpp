@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <map>
 #include "h-cliente.hpp"
 #include "h-gerente.hpp"
 using namespace std;
@@ -10,10 +9,7 @@ int main(int argc, char *argv[]) {
     /*capturando o tipo de usuário para inicializar o programa de maneira correta*/
     string perfil=argv[1];
 
-    /*preenchendo o arquivo com 5 elementos iniciais*/
-    inicializarArquivo();
-
-    /*transferindo os elementos iniciais do arquivo para o mapa*/
+    /*transferindo os elementos já presentes no arquivo para o mapa*/
     adicionarArquivoNoMapa();
 
     /*teste para saber qual perfil de usuário inicializou o programa*/

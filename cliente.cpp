@@ -6,7 +6,7 @@ using namespace std;
 
 map<string, double>carrinho;
 
-/*adicionando um medicamento selecionado pleo cliente no mapa do carrinho*/
+/*adiciona um medicamento selecionado pleo cliente no mapa do carrinho*/
 void adicionarNoCarrinho(string medDesejado, double preco) {
     /*a chave é uma string armazenando o nome do medicamento e o valor armazena seu preço*/
     carrinho[medDesejado]=preco;
